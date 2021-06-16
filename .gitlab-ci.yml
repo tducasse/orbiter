@@ -13,7 +13,7 @@ stages:
   - mac
 
 variables:
-  EXPORT_NAME: replace_me
+  EXPORT_NAME: orbiter
 
 before_script:
   # Remove lfs hook (https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/2245)
