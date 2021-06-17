@@ -6,6 +6,14 @@ onready var Detector = $Detector
 var speed = 15000
 var velocity = Vector2.ZERO
 
+signal detected()
+
+
+var init_position = null
+
+func _ready():
+	init_position = position
+
 
 func get_input():
 	velocity = Vector2.ZERO
@@ -33,10 +41,10 @@ func check_detected(other):
 	Detector.force_raycast_update()
 	var collider = Detector.get_collider()
 	Detector.enabled = false
-	print(collider)
 	if collider:
 		if collider.name == "GuardArea":
-			print("detected")
+			emit_signal("detected")
 		
 
-
+func reset():
+	position = init_position
