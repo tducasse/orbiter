@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var Detector = $Detector
+onready var PlayerSprite = $Sprite
 
 
 var speed = 15000
@@ -32,6 +33,8 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity * delta)
+	if velocity.length() > 0:
+		PlayerSprite.rotation = velocity.angle() + 1.5
 
 
 func check_detected(other):

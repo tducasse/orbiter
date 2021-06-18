@@ -12,6 +12,7 @@ func _ready():
 	Guard.pause_mode = Node.PAUSE_MODE_STOP
 	Guard2.pause_mode = Node.PAUSE_MODE_STOP
 	Player.pause_mode = Node.PAUSE_MODE_STOP
+	Music.play()
 
 
 func _on_Player_detected():

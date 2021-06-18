@@ -14,6 +14,10 @@ config/name="godotwildjam"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Music="*res://Music.tscn"
+
 [display]
 
 window/size/width=1920

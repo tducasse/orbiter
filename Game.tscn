@@ -92,8 +92,9 @@ dialog_text = "Detected!"
 curve = SubResource( 5 )
 
 [node name="Guard" parent="GuardPath2" instance=ExtResource( 4 )]
-position = Vector2( 1836.66, 176.192 )
-rotation = -1.77032
+position = Vector2( 1524.56, 272.445 )
+rotation = 0.0742169
+offset = 1000.0
 
 [connection signal="detected" from="Player" to="." method="_on_Player_detected"]
 [connection signal="confirmed" from="GameOver" to="." method="_on_GameOver_confirmed"]
