@@ -20,18 +20,22 @@ func _ready():
 func _on_Player_restart():
 	get_tree().paused = false
 	Player.reset()
+	parts_picked = 0
+	Player.update_parts(parts_picked, total_parts)
 	for guard in Guards.get_children():
 		guard.get_child(0).reset()
+	for part in Parts.get_children():
+		part.reset()
 
 
-func _on_Player_picked(body):
-	print(body.name)
-	body.queue_free()
+func _on_Player_picked(part):
+	part.pick()
 	update_parts()
 	
 	
 func end_game():
-	print("game end")
+	Music.stop()
+	var _c = get_tree().change_scene("res://Win.tscn")
 	
 	
 func update_parts():

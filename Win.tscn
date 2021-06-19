@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Win.gd" type="Script" id=1]
+[ext_resource path="res://Spacetime.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Spacetime_medium.tres" type="DynamicFont" id=3]
+
+[node name="Win" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -674.5
+margin_top = -118.5
+margin_right = 674.5
+margin_bottom = 118.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_right = 1349.0
+margin_bottom = 237.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 1349.0
+margin_bottom = 185.0
+custom_constants/margin_bottom = 80
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinTitle" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer"]
+margin_right = 1349.0
+margin_bottom = 105.0
+custom_fonts/font = ExtResource( 2 )
+text = "Congratulations"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 189.0
+margin_right = 1349.0
+margin_bottom = 237.0
+
+[node name="Back" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 596.0
+margin_right = 752.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 3 )
+text = "Back"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/Back" to="." method="_on_Back_pressed"]

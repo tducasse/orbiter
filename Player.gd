@@ -18,6 +18,13 @@ var init_position = null
 func _ready():
 	init_position = position
 	pause_mode = PAUSE_MODE_PROCESS
+	var back_button = GameOver.add_button("Back to menu", true, "back")
+	var ok_button = GameOver.get_ok()
+	ok_button.text = "Try again"
+	var font = load("res://Spacetime_medium.tres")
+	ok_button.add_font_override("font", font)
+	back_button.add_font_override("font", font)
+	GameOver.get_close_button().visible = false
 
 
 func get_input():
@@ -65,9 +72,20 @@ func _on_GameOver_confirmed():
 
 
 func _on_Pickup_body_entered(body):
-	if body.name == "Part":
+	if body.name in ["RightWing", "LeftWing", "Engine", "Top", "Window"]:
 		emit_signal("picked", body)
 
 
 func update_parts(picked, total):
 	Parts.text = "Parts: " + str(picked) + '/' + str(total)
+
+
+func back():
+	Music.stop()
+	GameOver.hide()
+	var _c = get_tree().change_scene("res://Menu.tscn")
+
+
+func _on_GameOver_custom_action(action):
+	if action == "back":
+		back()
