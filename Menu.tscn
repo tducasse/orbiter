@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
-[ext_resource path="res://menu.ogg" type="AudioStream" id=2]
+[ext_resource path="res://MenuMusic.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Spacetime.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Spacetime_medium.tres" type="DynamicFont" id=4]
 
@@ -64,8 +64,6 @@ size_flags_vertical = 0
 custom_fonts/font = ExtResource( 4 )
 text = "Start"
 
-[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
-autoplay = true
+[node name="MenuMusic" parent="." instance=ExtResource( 2 )]
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/Start" to="." method="_on_Start_pressed"]

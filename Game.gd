@@ -9,6 +9,7 @@ var parts_picked = 0
 
 
 func _ready():
+	MenuMusic.stop()
 	total_parts = Parts.get_child_count()
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	for guard in Guards.get_children():
