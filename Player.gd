@@ -2,21 +2,27 @@ extends KinematicBody2D
 
 onready var Detector = $Detector
 onready var PlayerSprite = $Sprite
+onready var GameOver = $HUD/GameOver
+onready var Parts = $HUD/Parts
 
 
 var speed = 15000
 var velocity = Vector2.ZERO
 
-signal detected()
+signal restart()
+signal picked(body)
 
 
 var init_position = null
 
 func _ready():
 	init_position = position
+	pause_mode = PAUSE_MODE_PROCESS
 
 
 func get_input():
+	if get_tree().paused:
+		return
 	velocity = Vector2.ZERO
 	if Input.is_action_pressed('right'):
 		velocity.x += 1
@@ -46,8 +52,22 @@ func check_detected(other):
 	Detector.enabled = false
 	if collider:
 		if collider.name == "GuardArea":
-			emit_signal("detected")
+			GameOver.popup_centered()
+			get_tree().paused = true
 		
 
 func reset():
 	position = init_position
+
+
+func _on_GameOver_confirmed():
+	emit_signal("restart")
+
+
+func _on_Pickup_body_entered(body):
+	if body.name == "Part":
+		emit_signal("picked", body)
+
+
+func update_parts(picked, total):
+	Parts.text = "Parts: " + str(picked) + '/' + str(total)
