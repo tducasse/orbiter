@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Win.gd" type="Script" id=1]
 [ext_resource path="res://Spacetime.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Spacetime_medium.tres" type="DynamicFont" id=3]
+[ext_resource path="res://SpaceCowboy.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ship.png" type="Texture" id=5]
 
 [node name="Win" type="Control"]
 anchor_right = 1.0
@@ -27,7 +29,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_right = 1349.0
-margin_bottom = 237.0
+margin_bottom = 394.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
 margin_right = 1349.0
@@ -46,10 +48,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 189.0
 margin_right = 1349.0
-margin_bottom = 237.0
+margin_bottom = 342.0
+custom_constants/margin_bottom = 80
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer2"]
+margin_right = 1349.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 4 )
+text = "04:50"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 346.0
+margin_right = 1349.0
+margin_bottom = 394.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer"]
 margin_left = 596.0
@@ -57,5 +78,13 @@ margin_right = 752.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 3 )
 text = "Back"
+
+[node name="ship" type="Sprite" parent="."]
+position = Vector2( 191.496, 861.554 )
+texture = ExtResource( 5 )
+
+[node name="ship2" type="Sprite" parent="."]
+position = Vector2( 1692.28, 861.554 )
+texture = ExtResource( 5 )
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/Back" to="." method="_on_Back_pressed"]

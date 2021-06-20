@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 Music="*res://Music.tscn"
 MenuMusic="*res://MenuMusic.tscn"
+Global="*res://Global.gd"
 
 [display]
 

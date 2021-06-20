@@ -1,14 +1,131 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
 [ext_resource path="res://MenuMusic.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Spacetime.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Spacetime_medium.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Spacetime_small.tres" type="DynamicFont" id=5]
+[ext_resource path="res://SpaceCowboy.tres" type="DynamicFont" id=6]
+[ext_resource path="res://top.png" type="Texture" id=7]
+[ext_resource path="res://guard.png" type="Texture" id=8]
+[ext_resource path="res://window.png" type="Texture" id=9]
+[ext_resource path="res://player.png" type="Texture" id=10]
+[ext_resource path="res://engine.png" type="Texture" id=11]
+[ext_resource path="res://left-wing.png" type="Texture" id=12]
+[ext_resource path="res://right-wing.png" type="Texture" id=13]
+[ext_resource path="res://ship.png" type="Texture" id=14]
+[ext_resource path="res://wasd.png" type="Texture" id=15]
+[ext_resource path="res://arrows.png" type="Texture" id=16]
+
+[sub_resource type="Animation" id=2]
+resource_name = "New Anim"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("right-wing:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("engine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("top:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1.01 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("left-wing:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("window:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "New Anim"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("guard:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 89.3309, 449.999 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "New Anim"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, 90.0, 180.0, -90.0, 0.0 ]
+}
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0.133333 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -19,17 +136,25 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -315.0
-margin_top = -153.5
+margin_top = -151.0
 margin_right = 315.0
-margin_bottom = 3.5
+margin_bottom = 151.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ship" type="Sprite" parent="CenterContainer"]
+position = Vector2( 318.318, -23.2297 )
+rotation = 1.0472
+scale = Vector2( 0.958194, 0.958194 )
+z_index = -1
+texture = ExtResource( 14 )
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_top = 2.0
 margin_right = 630.0
-margin_bottom = 237.0
+margin_bottom = 304.0
 mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
@@ -64,6 +189,161 @@ size_flags_vertical = 0
 custom_fonts/font = ExtResource( 4 )
 text = "Start"
 
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 241.0
+margin_right = 630.0
+margin_bottom = 302.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/CenterContainer2"]
+margin_left = 157.0
+margin_right = 472.0
+margin_bottom = 61.0
+custom_constants/margin_top = 40
+
+[node name="Space" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2/MarginContainer"]
+margin_top = 40.0
+margin_right = 315.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 5 )
+text = "Press space to start"
+align = 1
+
 [node name="MenuMusic" parent="." instance=ExtResource( 2 )]
 
+[node name="Spaceship" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -896.0
+margin_top = 228.0
+margin_right = -254.0
+margin_bottom = 301.0
+rect_scale = Vector2( 0.88, 0.88 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Find" type="Label" parent="Spaceship"]
+margin_right = 642.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 6 )
+text = "Find all the spaceship parts"
+
+[node name="right-wing" type="Sprite" parent="Spaceship/Find"]
+position = Vector2( 159.26, 183.354 )
+scale = Vector2( 1.11537, 1.11537 )
+texture = ExtResource( 13 )
+
+[node name="top" type="Sprite" parent="Spaceship/Find"]
+position = Vector2( 301.228, 157.927 )
+scale = Vector2( 1.11537, 1.11537 )
+texture = ExtResource( 7 )
+
+[node name="left-wing" type="Sprite" parent="Spaceship/Find"]
+position = Vector2( 458.028, 179.116 )
+scale = Vector2( 1.11537, 1.11537 )
+texture = ExtResource( 12 )
+
+[node name="engine" type="Sprite" parent="Spaceship/Find"]
+position = Vector2( 46.9565, 174.878 )
+scale = Vector2( 1.11537, 1.11537 )
+texture = ExtResource( 11 )
+
+[node name="window" type="Sprite" parent="Spaceship/Find"]
+position = Vector2( 574.569, 170.641 )
+scale = Vector2( 1.11537, 1.11537 )
+texture = ExtResource( 9 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spaceship/Find"]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 2 )
+
+[node name="Guards" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 432.0
+margin_top = -468.0
+margin_right = 830.0
+margin_bottom = -319.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avoid" type="Label" parent="Guards"]
+anchor_top = -0.0268456
+anchor_bottom = -0.0268456
+margin_right = 398.0
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 6 )
+text = "Avoid the guards
+"
+
+[node name="guard" type="Sprite" parent="Guards/Avoid"]
+position = Vector2( 205.876, 161.192 )
+rotation = 5.85156
+texture = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Guards/Avoid"]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 1 )
+
+[node name="Player" type="MarginContainer" parent="."]
+margin_left = 1600.0
+margin_top = 800.0
+margin_right = 2230.0
+margin_bottom = 800.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player" type="Sprite" parent="Player"]
+texture = ExtResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/player"]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 3 )
+
+[node name="arrows" type="Sprite" parent="Player"]
+position = Vector2( -134, 100 )
+texture = ExtResource( 16 )
+
+[node name="wasd" type="Sprite" parent="Player"]
+position = Vector2( 131, 100 )
+texture = ExtResource( 15 )
+
+[node name="Credits" type="Button" parent="."]
+margin_left = 35.0
+margin_top = 35.0
+margin_right = 173.0
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 5 )
+text = "Credits"
+
+[node name="CreditsDialog" type="AcceptDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -46.5
+margin_top = -29.0
+margin_right = 403.5
+margin_bottom = 71.0
+rect_min_size = Vector2( 450, 100 )
+rect_scale = Vector2( 2, 2 )
+window_title = "Credits"
+
+[node name="TextEdit" type="TextEdit" parent="CreditsDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 442.0
+margin_bottom = 64.0
+text = "In-game music by H36 Prod
+https://www.youtube.com/channel/UCaj7uiJKRyl9n0anOM7NkNg"
+readonly = true
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]

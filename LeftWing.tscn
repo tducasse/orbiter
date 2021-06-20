@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://left-wing.png" type="Texture" id=1]
 [ext_resource path="res://Resettable.gd" type="Script" id=2]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( 7.07372, -76.807, 23.63, -24.6125, -19.5848, 76.6897, -24.0746, 43.5771, -21.8297, 24.2146, -17.3398, -6.65309, -8.07953, -39.2045, 2.02263, -66.4242 )
 
 [node name="LeftWing" type="StaticBody2D"]
 script = ExtResource( 2 )
@@ -11,3 +14,6 @@ texture = ExtResource( 1 )
 
 [node name="Coll" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 7.11133, -77.2938, 24.0627, -24.5855, -19.905, 77.3878, -23.878, 43.485, -20.4347, 8.2578, -12.7536, -25.9099, -1.62924, -57.9586 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 1 )

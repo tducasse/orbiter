@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://SpaceCowboy.tres" type="DynamicFont" id=3]
+[ext_resource path="res://GameOver.gd" type="Script" id=4]
+[ext_resource path="res://pickup.ogg" type="AudioStream" id=5]
+[ext_resource path="res://detected.ogg" type="AudioStream" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.9119
@@ -38,6 +41,8 @@ margin_right = 55.0
 margin_bottom = 29.0
 popup_exclusive = true
 window_title = ""
+dialog_text = "Press space to try again, Esc to go back to the title screen"
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -55,12 +60,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Time" type="Label" parent="HUD"]
+margin_left = 28.0
+margin_top = 25.5874
+margin_right = 139.0
+margin_bottom = 98.5874
+custom_fonts/font = ExtResource( 3 )
+text = "4:50"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Pickup" type="Area2D" parent="."]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup"]
 shape = SubResource( 2 )
 
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+
+[node name="DetectedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[connection signal="back" from="HUD/GameOver" to="." method="_on_GameOver_back"]
 [connection signal="confirmed" from="HUD/GameOver" to="." method="_on_GameOver_confirmed"]
 [connection signal="custom_action" from="HUD/GameOver" to="." method="_on_GameOver_custom_action"]
+[connection signal="reset" from="HUD/GameOver" to="." method="_on_GameOver_reset"]
 [connection signal="body_entered" from="Pickup" to="." method="_on_Pickup_body_entered"]

@@ -4,10 +4,14 @@ onready var Detector = $Detector
 onready var PlayerSprite = $Sprite
 onready var GameOver = $HUD/GameOver
 onready var Parts = $HUD/Parts
+onready var Time = $HUD/Time
+onready var PickupSound = $PickupSound
+onready var DetectedSound = $DetectedSound
 
 
 var speed = 15000
 var velocity = Vector2.ZERO
+var time = 0.0
 
 signal restart()
 signal picked(body)
@@ -18,13 +22,21 @@ var init_position = null
 func _ready():
 	init_position = position
 	pause_mode = PAUSE_MODE_PROCESS
-	var back_button = GameOver.add_button("Back to menu", true, "back")
-	var ok_button = GameOver.get_ok()
-	ok_button.text = "Try again"
-	var font = load("res://Spacetime_medium.tres")
-	ok_button.add_font_override("font", font)
-	back_button.add_font_override("font", font)
-	GameOver.get_close_button().visible = false
+	
+	
+func _process(delta):
+	if not get_tree().paused:
+		time += delta
+		update_time()
+
+
+func update_time():
+	var m = time/60
+	var s = fmod(time, 60)
+	var ms = fmod(time, 1) * 100
+	var time_string := "%02d:%02d:%02d" % [m, s, ms]
+	Global.time = time_string
+	Time.text = str(time_string)
 
 
 func get_input():
@@ -60,10 +72,13 @@ func check_detected(other):
 	if collider:
 		if collider.name == "GuardArea":
 			GameOver.popup_centered()
+			DetectedSound.play()
 			get_tree().paused = true
 		
 
 func reset():
+	time = 0.0
+	GameOver.hide()
 	position = init_position
 
 
@@ -73,6 +88,7 @@ func _on_GameOver_confirmed():
 
 func _on_Pickup_body_entered(body):
 	if body.name in ["RightWing", "LeftWing", "Engine", "Top", "Window"]:
+		PickupSound.play()
 		emit_signal("picked", body)
 
 
@@ -89,3 +105,11 @@ func back():
 func _on_GameOver_custom_action(action):
 	if action == "back":
 		back()
+
+
+func _on_GameOver_back():
+	back()
+
+
+func _on_GameOver_reset():
+	emit_signal("restart")
