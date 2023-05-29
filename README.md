@@ -1,5 +1,5 @@
 # godotwildjam
 
-[![pipeline status](https://gitlab.com/aldevs/gamedev/godotwildjam/badges/master/pipeline.svg)](https://gitlab.com/aldevs/gamedev/godotwildjam/-/commits/master)
+![image](https://github.com/tducasse/orbiter/assets/11507599/c9bf6241-6e1b-4721-90a2-23981ced39ec)
 
 - App deployed [here](https://tducasse.itchio/orbiter)
